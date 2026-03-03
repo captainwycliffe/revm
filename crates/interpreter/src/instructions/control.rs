@@ -74,7 +74,7 @@ fn return_inner(
         if !interpreter.resize_memory(gas_params, offset, len) {
             return;
         }
-        output = interpreter.memory.slice_len(offset, len).to_vec().into()
+        output = Bytes::copy_from_slice(interpreter.memory.slice_len(offset, len).as_ref())
     }
 
     interpreter
